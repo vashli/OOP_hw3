@@ -1,6 +1,4 @@
-package assign3;
-
-import java.util.*;
+package assign3.sudoku;
 
 /*
  * Encapsulates a Sudoku grid to be solved.

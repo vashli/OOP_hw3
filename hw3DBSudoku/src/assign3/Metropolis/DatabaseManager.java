@@ -1,4 +1,5 @@
-package assign3;
+package assign3.Metropolis;
+
 import java.sql.*;
 
 public class DatabaseManager {
@@ -15,12 +16,12 @@ public class DatabaseManager {
     }
 
     public static void main(String[] args) {
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
         }
         catch(ClassNotFoundException ex) {
             System.out.println("Error: unable to load driver class!");
-            ex.printStackTrace();
             System.exit(1);
         }
 
