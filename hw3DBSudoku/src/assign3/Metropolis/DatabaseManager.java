@@ -4,34 +4,24 @@ import java.sql.*;
 
 public class DatabaseManager {
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() {
 
         String url = "jdbc:mysql://" + MyDBInfo.MYSQL_DATABASE_SERVER + "/" + MyDBInfo.MYSQL_DATABASE_NAME;
         String user = MyDBInfo.MYSQL_USERNAME;
         String password = MyDBInfo.MYSQL_PASSWORD;
-        Connection conn = DriverManager.getConnection(url, user, password);
-
-        System.out.println("Connected to database");
-        return conn;
-    }
-
-    public static void main(String[] args) {
-
+        Connection conn;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-        }
-        catch(ClassNotFoundException ex) {
-            System.out.println("Error: unable to load driver class!");
-            System.exit(1);
-        }
-
-
-        DatabaseManager DBManager = new DatabaseManager();
-        try {
-            Connection conn  = DBManager.getConnection();
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
+        System.out.println("Connected to database");
+        return conn;
     }
 
 }
